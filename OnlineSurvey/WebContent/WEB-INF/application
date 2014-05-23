@@ -12,3 +12,6 @@
 #	the specific language governing permissions and limitations under the
 #	License.
 com.onlinesurvey.service.ProductsService
+com.onlinesurvey.service.CustomerService
+com.onlinesurvey.service.StrategyService
+com.onlinesurvey.service.SurveyService

@@ -2,9 +2,93 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Customer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!--nav-->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery-ui.min.js"></script>
+<link href="./css/jquery-ui-1.10.4.css" rel="stylesheet" type="text/css" />
+
+<!-- Include one of jTable styles. -->
+<link href="./js/jtable.2.4.0/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+ 
+<!-- Include jTable script file. -->
+<script src="./js/jtable.2.4.0/jquery.jtable.min.js" type="text/javascript"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+<link href="./css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+	<script type="text/javascript">
+	    $(document).ready(function () {
+	        $('#CustomerTableContainer').jtable({
+	            title: 'Table of Customers',
+	            paging: true, //Enable paging
+	            pageSize:10, //Set page size (default: 10)
+	            sorting: true, //Enable sorting
+	            defaultSorting: 'Asset ASC', //Set default sorting
+	            actions: {
+	                listAction: '/OnlineSurvey/rest/Customer/GetCustomers',
+	                createAction: '/OnlineSurvey/rest/Customer/AddCustomers',
+	                updateAction: '/OnlineSurvey/rest/Customer/UpdateCustomers',
+	                deleteAction: '/OnlineSurvey/rest/Customer/DeleteCustomers'
+	            },
+	            fields: {
+	                CustomerId: {
+	                    key: true,
+	                    list: false
+	                },
+	                CustomerName: {
+	                    title: 'Customer Name',
+	                    width: '15%'
+	                },
+	                CustomerDesc: {
+	                    title: 'Customer Description',
+	                    width: '30%'
+	                },
+	                CustomerAge: {
+	                    title: 'Customer Age',
+	                    width: '15%',		                    
+	                },
+	                CustomerEmail: {
+	                    title: 'Customer Email',
+	                    width: '15%',		                   
+	                },	                
+	                CustomerCell: {
+	                    title: 'Customer Cell',
+	                    width: '15%',		                   
+	                },
+	                CustomerDL: {
+	                    title: 'Customer DL',
+	                    width: '15%',		                   
+	                },
+	            }
+	        });
+	    });
+	</script>
 </head>
 <body>
-
+<div class="header_bg">
+<div class="wrap">
+	<div class="header">
+		<div class="logo">
+			<a href="index.html"><img src="./images/logo.png" alt="" /></a>
+		</div>		
+	<div class="cssmenu">
+		<ul>		   
+		   <li><a href="adminProducts.html">Products</a></li>
+		   <li class="active"><a href="portfolio.html">Customer</a></li>
+		   <li><a href="portfolio.html">Survey</a></li>
+		   <li><a href="portfolio.html">Strategy</a></li>		  		     		 
+		 </ul>
+	</div>		
+	<div class="clear"></div>
+	</div>
+</div>
+</div>
+	<br>
+		<div id="CustomerTableContainer"></div>
+	<br>
 </body>
 </html>

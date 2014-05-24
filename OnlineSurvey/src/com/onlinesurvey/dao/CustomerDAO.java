@@ -64,4 +64,45 @@ public class CustomerDAO {
 		
 		return allCustomers;
 	}
+	
+	/**
+	 * Delete the customer details
+	 * @param customerId
+	 */
+	public void deleteCustomer(Long customerId){
+		
+		Configuration configuration=new Configuration();
+		configuration.configure();
+		ServiceRegistry sr= new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		SessionFactory sf=configuration.buildSessionFactory(sr);				
+		Session ss=sf.openSession();
+		ss.beginTransaction();	
+		
+		CustomerBean customer = 
+                (CustomerBean)ss.get(CustomerBean.class, customerId); 
+		ss.delete(customer); 
+		
+		ss.getTransaction().commit();
+		ss.close();
+				
+	}
+	
+	/**
+	 * Update the Customer Row
+	 * @param custBean
+	 */
+	public void updateCustomer(CustomerBean custBean){
+		
+		Configuration configuration=new Configuration();
+		configuration.configure();
+		ServiceRegistry sr= new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		SessionFactory sf=configuration.buildSessionFactory(sr);				
+		Session ss=sf.openSession();
+		ss.beginTransaction();	
+				
+	 	ss.update(custBean);
+	 
+	 	ss.getTransaction().commit();
+		ss.close();
+	}
 }

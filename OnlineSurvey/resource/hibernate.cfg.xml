@@ -30,6 +30,7 @@
 		<mapping class="com.onlinesurvey.bean.User"></mapping>
 		<mapping class="com.onlinesurvey.bean.CustomerBean"></mapping>
 		<mapping class="com.onlinesurvey.bean.ProductsBean"></mapping>
+		<mapping class="com.onlinesurvey.bean.SurveyBean"></mapping>
     </session-factory>
 
 </hibernate-configuration>

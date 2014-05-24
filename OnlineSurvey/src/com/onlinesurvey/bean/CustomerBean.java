@@ -15,8 +15,8 @@ import javax.persistence.Id;
 @Entity(name = "customer_table")
 public class CustomerBean {
 
-	@Id @GeneratedValue
-	private int CustomerId;
+	@Id @GeneratedValue	
+	private Long CustomerId;
   
 	@Column(name="CustomerName")
 	private String CustomerName;
@@ -39,11 +39,11 @@ public class CustomerBean {
 	@Column(name="CustomerPwd")
 	private String CustomerPwd;
 
-	public int getCustomerId() {
+	public Long getCustomerId() {
 		return CustomerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Long customerId) {
 		CustomerId = customerId;
 	}
 

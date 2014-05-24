@@ -16,4 +16,10 @@
 		<servlet-name>restSdkService</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	<listener>
+    	<listener-class>
+	  		com.onlinesurvey.dao.HibernateListener
+		</listener-class>
+  	</listener>
 </web-app>

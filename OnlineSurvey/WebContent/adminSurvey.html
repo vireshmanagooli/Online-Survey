@@ -17,6 +17,18 @@
 <!-- Include jTable script file. -->
 <script src="./js/jtable.2.4.0/jquery.jtable.min.js" type="text/javascript"></script>
 
+<!-- Include Alertify library -->
+<script src="./js/alertify.js-0.3.11/lib/alertify.min.js"></script>
+<!-- include the core styles -->
+<link rel="stylesheet" href="./js/alertify.js-0.3.11/themes/alertify.core.css" />
+<!-- include a theme, can be included into the core instead of 2 separate files -->
+<link rel="stylesheet" href="./js/alertify.js-0.3.11/themes/alertify.default.css" />
+
+<!-- Validation framework -->
+<link rel="stylesheet" href="http://jquery.bassistance.de/validate/demo/site-demos.css">
+<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
+
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 <link href="./css/style.css" rel="stylesheet" type="text/css" media="all" />
 
@@ -55,6 +67,160 @@
 	        });
 	      	//Load list from server
 	        $('#SurveyTableContainer').jtable('load');
+
+	      	//Hide the create review DIV on page load.
+	      	$(".contact-form").hide();	      	
+	      	
+	        //Bind the create survey click event
+	        $("#createSurvey").click(function() {
+
+		        //Retreive the product details from the table and populate the same
+		        $.ajax({type: "POST",
+					  	url: "/OnlineSurvey/rest/Products/GetProducts",					  	
+				}).done(function(products) {
+					    console.log(products);
+
+					    if(products.Records.length == 0){
+					    	alertify.error("Please add products before creating the survey");
+						}else{
+
+							for (var i = 0; i < products.Records.length; i++) { 
+							   var productName = products.Records[i].ProductName;
+							   var productId = products.Records[i].ProductId;
+
+							   //Append the options for products drop down
+							   $("#productName").append("<option value=" + productId + ">" + productName + "</option>");
+							}
+							//show the create review DIV
+				        	$(".contact-form").show();
+				        	//Hide the button - create survey
+				        	$(".inputButton").hide();
+						}					    
+					});	        	  
+	       	}); 
+
+        	
+	        jQuery.validator.setDefaults({
+	        	  debug: true,
+	        	  success: "valid"
+	        	});
+	        	$("#createSurveyForm").validate({
+	        	  submitHandler: function(form) {
+
+	        		  console.log( "Handler for .submit() called." );
+		        	  event.preventDefault();
+	        		//  form.submit();
+	        	  },
+	        	  rules: {
+	        		SurveyName: {
+	        	      	required: true
+	        	    },SurveyDesc: {
+	        	      	required: true
+	        	    },Question_1: {
+	        	      	required: true
+	        	    },Option_1_1: {
+	        	      	required: true
+	        	    },Option_1_2: {
+	        	      	required: true
+	        	    },Option_1_3: {
+	        	      	required: true
+	        	    },Option_1_4: {
+	        	      	required: true
+	        	    },Question_2: {
+	        	      	required: true
+	        	    },Option_2_1: {
+	        	      	required: true
+	        	    },Option_2_2: {
+	        	      	required: true
+	        	    },Option_2_3: {
+	        	      	required: true
+	        	    },Option_2_4: {
+	        	      	required: true
+	        	    },Question_3: {
+	        	      	required: true
+	        	    },Option_3_1: {
+	        	      	required: true
+	        	    },Option_3_2: {
+	        	      	required: true
+	        	    },Option_3_3: {
+	        	      	required: true
+	        	    },Option_3_4: {
+	        	      	required: true
+	        	    },Question_4: {
+	        	      	required: true
+	        	    },Option_4_1: {
+	        	      	required: true
+	        	    },Option_4_2: {
+	        	      	required: true
+	        	    },Option_4_3: {
+	        	      	required: true
+	        	    },Option_4_4: {
+	        	      	required: true
+	        	    },Question_5: {
+	        	      	required: true
+	        	    },Option_5_1: {
+	        	      	required: true
+	        	    },Option_5_2: {
+	        	      	required: true
+	        	    },Option_5_3: {
+	        	      	required: true
+	        	    },Option_5_4: {
+	        	      	required: true
+	        	    },Question_6: {
+	        	      	required: true
+	        	    },Option_6_1: {
+	        	      	required: true
+	        	    },Option_6_2: {
+	        	      	required: true
+	        	    },Option_6_3: {
+	        	      	required: true
+	        	    },Option_6_4: {
+	        	      	required: true
+	        	    },Question_7: {
+	        	      	required: true
+	        	    },Option_7_1: {
+	        	      	required: true
+	        	    },Option_7_2: {
+	        	      	required: true
+	        	    },Option_7_3: {
+	        	      	required: true
+	        	    },Option_7_4: {
+	        	      	required: true
+	        	    },Question_8: {
+	        	      	required: true
+	        	    },Option_8_1: {
+	        	      	required: true
+	        	    },Option_8_2: {
+	        	      	required: true
+	        	    },Option_8_3: {
+	        	      	required: true
+	        	    },Option_8_4: {
+	        	      	required: true
+	        	    },Question_9: {
+	        	      	required: true
+	        	    },Option_9_1: {
+	        	      	required: true
+	        	    },Option_9_2: {
+	        	      	required: true
+	        	    },Option_9_3: {
+	        	      	required: true
+	        	    },Option_9_4: {
+	        	      	required: true
+	        	    },Question_10: {
+	        	      	required: true
+	        	    },Option_10_1: {
+	        	      	required: true
+	        	    },Option_10_2: {
+	        	      	required: true
+	        	    },Option_10_3: {
+	        	      	required: true
+	        	    },Option_10_4: {
+	        	      	required: true
+	        	    }
+	        	    
+	        	  }
+	        	});
+	        
 	    });
 	</script>
 </head>
@@ -79,12 +245,247 @@
 </div>
 	<br>
 		<div id="SurveyTableContainer"></div>
-
-	<form id="myForm" action="comment.php" method="post" class=".ui-widget">
-		Name: <input type="text" name="name"  class=".ui-widget"/> Comment:
-		<textarea name="comment" class=".ui-widget"></textarea>
-		<input type="submit" value="Submit Comment"  class=".ui-widget"/>
-	</form>
+		<br>
+		<div>			
+			 <span><input id="createSurvey" class="inputButton" value="Create Survey"></span>			 		
+		</div>
+		<br>
+		<div class="contact-form">
+			 <div class="content">
+		 	 	<h2 class="style">Create Survey</h2>
+		 	 </div>
+			 <form method="post" action="/OnlineSurvey/rest/Survey/CreateSurvey" id="createSurveyForm">
+			   	<div>
+			    	<span><label>SURVEY NAME</label></span>
+			    	<span><input name="SurveyName" id="SurveyName" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>SURVEY DESCRIPTION</label></span>
+			    	<span><textarea name="SurveyDesc" id="SurveyDesc"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>PRODUCT NAME</label></span>
+			    	<span>
+			    		<select name="productName" id="productName">						  
+						</select>
+			    	</span>
+			    </div>
+			    <div>
+			     	<span><label>CUSTOMER DL</label></span>
+			    	<span>
+			    		<select name="CustomerDL">
+						  <option value="NORTH">North</option>
+						  <option value="SOUTH">South</option>
+						  <option value="EAST">East</option>
+						  <option value="WEST">West</option>
+						</select>
+			    	</span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 1 :</label></span>
+			    	<span><textarea name="Question_1" id="Question_1"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_1_1" id="Option_1_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_1_2" id="Option_1_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_1_3" id="Option_1_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_1_4" id="Option_1_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 2 :</label></span>
+			    	<span><textarea name="Question_2" id="Question_2"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_2_1" id="Option_2_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_2_2" id="Option_2_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_2_3" id="Option_2_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_2_4" id="Option_2_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 3 :</label></span>
+			    	<span><textarea name="Question_3" id="Question_3"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_3_1" id="Option_3_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_3_2" id="Option_3_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_3_3" id="Option_3_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_3_4" id="Option_3_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 4 :</label></span>
+			    	<span><textarea name="Question_4" id="Question_4"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_4_1" id="Option_4_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_4_2" id="Option_4_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_4_3" id="Option_4_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_4_4" id="Option_4_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 5 :</label></span>
+			    	<span><textarea name="Question_5" id="Question_5"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_5_1" id="Option_5_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_5_2" id="Option_5_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_5_3" id="Option_5_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_5_4" id="Option_5_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 6 :</label></span>
+			    	<span><textarea name="Question_6" id="Question_6"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_6_1" id="Option_6_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_6_2" id="Option_6_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_6_3" id="Option_6_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_6_4" id="Option_6_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 7 :</label></span>
+			    	<span><textarea name="Question_7" id="Question_7"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_7_1" id="Option_7_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_7_2" id="Option_7_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_7_3" id="Option_7_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_7_4" id="Option_7_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 8 :</label></span>
+			    	<span><textarea name="Question_8" id="Question_8"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_8_1" id="Option_8_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_8_2" id="Option_8_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_8_3" id="Option_8_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_8_4" id="Option_8_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 9 :</label></span>
+			    	<span><textarea name="Question_9" id="Question_9"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_9_1" id="Option_9_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_9_2" id="Option_9_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_9_3" id="Option_9_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_9_4" id="Option_9_4" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>QUESTION 10 :</label></span>
+			    	<span><textarea name="Question_10" id="Question_10"> </textarea></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 1</label></span>
+			    	<span><input name="Option_10_1" id="Option_10_1" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 2</label></span>
+			    	<span><input name="Option_10_2" id="Option_10_2" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 3</label></span>
+			    	<span><input name="Option_10_3" id="Option_10_3" type="text" class="textbox"></span>
+			    </div>
+			    <div>
+			    	<span><label>OPTION 4</label></span>
+			    	<span><input name="Option_10_4" id="Option_10_4" type="text" class="textbox"></span>
+			    </div>
+				<div>
+					<span><input type="submit" class="" value="Publish"></span>
+				</div>
+		    </form>
+		</div>
 	<br>
 </body>
 </html>

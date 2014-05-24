@@ -41,15 +41,15 @@
 	                },
 	                CustomerName: {
 	                    title: 'Customer Name',
-	                    width: '15%'
+	                    width: '10%'
 	                },
 	                CustomerDesc: {
 	                    title: 'Customer Description',
-	                    width: '30%'
+	                    width: '20%'
 	                },
 	                CustomerAge: {
 	                    title: 'Customer Age',
-	                    width: '15%',		                    
+	                    width: '10%',		                    
 	                },
 	                CustomerEmail: {
 	                    title: 'Customer Email',
@@ -57,14 +57,20 @@
 	                },	                
 	                CustomerCell: {
 	                    title: 'Customer Cell',
-	                    width: '15%',		                   
+	                    width: '10%',		                   
 	                },
 	                CustomerDL: {
 	                    title: 'Customer DL',
-	                    width: '15%',		                   
+	                    width: '10%',		                   
+	                },
+	                CustomerPwd: {
+	                    title: 'Customer Pwd',
+	                    width: '10%',		                   
 	                },
 	            }
 	        });
+	        //Load list from server
+	        $('#CustomerTableContainer').jtable('load');
 	    });
 	</script>
 </head>

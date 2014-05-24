@@ -30,7 +30,7 @@ public class SurveyService {
 	@Path("/GetSurvey")
 	@POST	
 	@Produces(MediaType.APPLICATION_JSON) 
-	public String getProducts(@QueryParam("jtStartIndex") int jtStartIndex,@QueryParam("jtPageSize") int jtPageSize, @QueryParam("jtSorting") String jtSorting,
+	public String getSurvey(@QueryParam("jtStartIndex") int jtStartIndex,@QueryParam("jtPageSize") int jtPageSize, @QueryParam("jtSorting") String jtSorting,
 			@QueryParam("callback") String callback) throws JSONException {
 				
 		JSONObject returnObject = new JSONObject();	
@@ -54,7 +54,21 @@ public class SurveyService {
 	@POST
 	@Path("/AddSurvey")
 	@Produces(MediaType.APPLICATION_JSON) 
-	public String addProducts(@Context HttpServletRequest request) throws JSONException {
+	public String addSurvey(@Context HttpServletRequest request) throws JSONException {
+	
+		JSONObject returnObject = new JSONObject();
+		
+		returnObject.put(ServiceConstants.RESULT, ServiceConstants.ERROR);
+		returnObject.put(ServiceConstants.MESSAGE, "Survey Can't be added from the table. Please use below add survey button");		
+		
+		System.out.println(" : " + returnObject.toString());
+		return returnObject.toString();
+	}
+	
+	@POST
+	@Path("/CreateSurvey")
+	@Produces(MediaType.APPLICATION_JSON) 
+	public String createSurvey(@Context HttpServletRequest request) throws JSONException {
 	
 		JSONObject returnObject = new JSONObject();
 		
@@ -68,7 +82,7 @@ public class SurveyService {
 	@POST
 	@Path("/UpdateSurvey")
 	@Produces(MediaType.APPLICATION_JSON) 
-	public String updateProducts(@Context HttpServletRequest request) throws JSONException {
+	public String updateSurvey(@Context HttpServletRequest request) throws JSONException {
 	
 		JSONObject returnObject = new JSONObject();
 		
@@ -82,7 +96,7 @@ public class SurveyService {
 	@POST
 	@Path("/DeleteSurvey")
 	@Produces(MediaType.APPLICATION_JSON) 
-	public String deleteProducts(@Context HttpServletRequest request) throws JSONException {
+	public String deleteSurvey(@Context HttpServletRequest request) throws JSONException {
 	
 		String SurveyId = request.getParameter("SurveyId");
 		Long survId = Long.parseLong(SurveyId);

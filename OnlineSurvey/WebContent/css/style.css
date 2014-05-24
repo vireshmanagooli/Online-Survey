@@ -1520,3 +1520,25 @@ a.btn_red {color: #FFF;}
 .user_register input[type="checkbox"]+label {float:left;}
 
 .user_register .checkbox {margin-bottom: 10px; clear: both; overflow: hidden;}
+
+
+.inputButton {
+	font-family: 'Source Sans Pro', sans-serif;
+	cursor: pointer;
+	-webkit-appearance: none;
+	padding: 12px 30px;
+	border: 1px solid #ffffff;
+	background: #202227;
+	display: inline-block;
+	font-size: 1em;
+	text-transform: uppercase;
+	color: #ffffff;
+	-webkit-transition: 0.9s;
+	-moz-transition: 0.9s;
+	-o-transition: 0.9s;
+	transition: 0.9s;
+}
+
+.inputButton : hover{
+	background: #000000;
+}

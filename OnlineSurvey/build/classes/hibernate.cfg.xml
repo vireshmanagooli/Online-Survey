@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
 
@@ -18,15 +18,17 @@
 
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <property name="current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create</property>
+        <!-- <property name="hbm2ddl.auto">create</property> -->
 
 		<mapping class="com.onlinesurvey.bean.User"></mapping>
-
+		<mapping class="com.onlinesurvey.bean.CustomerBean"></mapping>
     </session-factory>
 
 </hibernate-configuration>

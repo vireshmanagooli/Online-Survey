@@ -3,6 +3,8 @@
  */
 package com.onlinesurvey.service;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.POST;
@@ -38,25 +40,13 @@ public class CustomerService {
 		JSONObject returnObject = new JSONObject();	
 		JSONArray returnArray = new JSONArray();
 		
-		JSONObject tableObject = new JSONObject();
-		tableObject.put(ServiceConstants.PRODUCT_ID, 1);
-		tableObject.put(ServiceConstants.PRODUCT_NAME, "Samsung Mobile");
-		tableObject.put(ServiceConstants.PRODUCT_DESC, "Smart Phone");
-		tableObject.put(ServiceConstants.PRODUCT_TYPE, "Cell Phone");
-		tableObject.put(ServiceConstants.PRICE, 20000);
-		tableObject.put(ServiceConstants.MARKET_STATUS, "Positive");
-		tableObject.put(ServiceConstants.LAUNCH_YEAR, "Date(1320259705710)");
-		returnArray.put(tableObject);
+		List<CustomerBean> allCustomers = new CustomerDAO().getAllCustomer();
 		
-		tableObject = new JSONObject();
-		tableObject.put(ServiceConstants.PRODUCT_ID, 2);
-		tableObject.put(ServiceConstants.PRODUCT_NAME, "Sony Mobile");
-		tableObject.put(ServiceConstants.PRODUCT_DESC, "Smart Phone");
-		tableObject.put(ServiceConstants.PRODUCT_TYPE, "Cell Phone");
-		tableObject.put(ServiceConstants.PRICE, 24000);
-		tableObject.put(ServiceConstants.MARKET_STATUS, "Positive");
-		tableObject.put(ServiceConstants.LAUNCH_YEAR, "Date(1320259705710)");
-		returnArray.put(tableObject);		
+		for (int i = 0; i < allCustomers.size(); i++) {  
+			CustomerBean customerBean = (CustomerBean) allCustomers.get(i);  
+			JSONObject record = populateJSON(customerBean);
+			returnArray.put(record);
+		} 		
 					
 		returnObject.put(ServiceConstants.RESULT, ServiceConstants.OK);
 		returnObject.put(ServiceConstants.RECORDS,returnArray);
@@ -131,10 +121,17 @@ public class CustomerService {
 			customerBean.setCustomerName(CustomerName);
 			customerBean.setCustomerPwd(CustomerPwd);
 			
-			new CustomerDAO().addCustomer(customerBean);
+			Long CustomerId = new CustomerDAO().addCustomer(customerBean);
+			
+			customerBean.setCustomerId(CustomerId);
+			//populate the JSON object
+			JSONObject record = populateJSON(customerBean);
+			JSONArray returnArray = new JSONArray();
+			
+			returnArray.put(record);
 			
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.OK);
-			returnObject.put(ServiceConstants.RECORDS,customerBean);
+			returnObject.put(ServiceConstants.RECORDS,returnArray);
 		}else{
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.ERROR);
 			returnObject.put(ServiceConstants.MESSAGE, ErrorMessage);
@@ -187,5 +184,20 @@ public class CustomerService {
 		}else{
 			return false;
 		}
+	}
+	
+	private JSONObject populateJSON(CustomerBean customerBean) throws JSONException{
+
+		JSONObject returnObj = new JSONObject();
+		returnObj.put("CustomerAge", customerBean.getCustomerAge());
+		returnObj.put("CustomerCell", customerBean.getCustomerCell());
+		returnObj.put("CustomerDesc", customerBean.getCustomerDesc());
+		returnObj.put("CustomerDL", customerBean.getCustomerDL());
+		returnObj.put("CustomerEmail", customerBean.getCustomerEmail());
+		returnObj.put("CustomerId", customerBean.getCustomerId());
+		returnObj.put("CustomerName", customerBean.getCustomerName());
+		returnObj.put("CustomerPwd", customerBean.getCustomerPwd());
+		
+		return returnObj;
 	}
 }

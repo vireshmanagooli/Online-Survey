@@ -22,49 +22,39 @@
 
 	<script type="text/javascript">
 	    $(document).ready(function () {
-	        $('#CustomerTableContainer').jtable({
-	            title: 'Table of Customers',
+	        $('#SurveyTableContainer').jtable({
+	            title: 'Table of Survey',
 	            paging: true, //Enable paging
 	            pageSize:10, //Set page size (default: 10)
 	            sorting: true, //Enable sorting
 	            defaultSorting: 'Asset ASC', //Set default sorting
 	            actions: {
-	                listAction: '/OnlineSurvey/rest/Customer/GetCustomers',
-	                createAction: '/OnlineSurvey/rest/Customer/AddCustomers',
-	                updateAction: '/OnlineSurvey/rest/Customer/UpdateCustomers',
-	                deleteAction: '/OnlineSurvey/rest/Customer/DeleteCustomers'
+	                listAction: '/OnlineSurvey/rest/Survey/GetSurvey',
+	                createAction: '/OnlineSurvey/rest/Survey/AddSurvey',
+	                updateAction: '/OnlineSurvey/rest/Survey/UpdateSurvey',
+	                deleteAction: '/OnlineSurvey/rest/Survey/DeleteSurvey'
 	            },
 	            fields: {
-	                CustomerId: {
+	            	SurveyId: {
 	                    key: true,
 	                    list: false
 	                },
-	                CustomerName: {
-	                    title: 'Customer Name',
-	                    width: '15%'
-	                },
-	                CustomerDesc: {
-	                    title: 'Customer Description',
+	                SurveyName: {
+	                    title: 'Survey Name',
 	                    width: '30%'
-	                },
-	                CustomerAge: {
-	                    title: 'Customer Age',
-	                    width: '15%',		                    
-	                },
-	                CustomerEmail: {
-	                    title: 'Customer Email',
-	                    width: '15%',		                   
 	                },	                
-	                CustomerCell: {
-	                    title: 'Customer Cell',
-	                    width: '15%',		                   
+	                SurveyDesc: {
+	                    title: 'Survey Description',
+	                    width: '40%',		                    
 	                },
 	                CustomerDL: {
-	                    title: 'Customer DL',
-	                    width: '15%',		                   
-	                },
+	                    title: 'Customer Distribution List',
+	                    width: '30%'
+	                }
 	            }
 	        });
+	      	//Load list from server
+	        $('#SurveyTableContainer').jtable('load');
 	    });
 	</script>
 </head>
@@ -78,9 +68,9 @@
 	<div class="cssmenu">
 		<ul>		   
 		   <li><a href="adminProducts.html">Products</a></li>
-		   <li><a href="portfolio.html">Customer</a></li>
-		   <li  class="active"><a href="portfolio.html">Survey</a></li>
-		   <li><a href="portfolio.html">Strategy</a></li>		  		     		 
+		   <li><a href="adminCustomer.html">Customer</a></li>
+		   <li class="active"><a href="adminSurvey.html">Survey</a></li>
+		   <li><a href="adminStrategy.html">Strategy</a></li>		  		     		 
 		 </ul>
 	</div>		
 	<div class="clear"></div>
@@ -88,7 +78,7 @@
 </div>
 </div>
 	<br>
-		<div id="CustomerTableContainer"></div>
+		<div id="SurveyTableContainer"></div>
 
 	<form id="myForm" action="comment.php" method="post" class=".ui-widget">
 		Name: <input type="text" name="name"  class=".ui-widget"/> Comment:

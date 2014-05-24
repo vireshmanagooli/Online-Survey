@@ -26,7 +26,7 @@
         <property name="hbm2ddl.auto">create</property>
 
 		<mapping class="com.onlinesurvey.bean.User"></mapping>
-
+		<mapping class=" com.onlinesurvey.bean.CustomerBean"></mapping>
     </session-factory>
 
 </hibernate-configuration>

@@ -3,6 +3,9 @@
  */
 package com.onlinesurvey.dao;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,20 +20,48 @@ import com.onlinesurvey.bean.CustomerBean;
  */
 public class CustomerDAO {
 
-	public int addCustomer(CustomerBean custBean){
+	/**
+	 * Method to add the customer to the database
+	 * @param custBean
+	 * @return
+	 */
+	public Long addCustomer(CustomerBean custBean){
 		
-		int returnId = 1;
+		Long returnId;
 		
 		Configuration configuration=new Configuration();
 		configuration.configure();
 		ServiceRegistry sr= new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
 		SessionFactory sf=configuration.buildSessionFactory(sr);				
 		Session ss=sf.openSession();
-		ss.beginTransaction();
-		ss.save(custBean);		
+		ss.beginTransaction();		
+		returnId = (Long)ss.save(custBean);
 		ss.getTransaction().commit();
 		ss.close();
 		
 		return returnId;
+	}
+	
+	/**
+	 * Retrieve all the customers details
+	 * @return
+	 */
+	public List<CustomerBean> getAllCustomer(){
+		
+		Configuration configuration=new Configuration();
+		configuration.configure();
+		ServiceRegistry sr= new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		SessionFactory sf=configuration.buildSessionFactory(sr);				
+		Session ss=sf.openSession();
+		ss.beginTransaction();		
+		
+		Query queryResult = ss.createQuery("from com.onlinesurvey.bean.CustomerBean");  
+		    
+		List<CustomerBean> allCustomers = queryResult.list();  		  
+		
+		ss.getTransaction().commit();
+		ss.close();
+		
+		return allCustomers;
 	}
 }

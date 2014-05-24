@@ -12,6 +12,8 @@ public class ServiceConstants {
 	public static String RESULT = "Result";
 	public static String RECORDS = "Records";
 	public static String OK = "OK";
+	public static String ERROR = "ERROR";
+	public static String MESSAGE = "Message"; 
 	
 	//********PRODUCT TABLE
 	public static String PRODUCT_ID = "ProductId";

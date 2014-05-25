@@ -99,7 +99,31 @@
 					});	        	  
 	       	}); 
 
-        	
+	        $("#dummyDiv").click(function() {
+
+	        	console.log( "Handler dummyDiv called : " + $("#createSurveyForm").serialize() );
+	        	 //Retreive the product details from the table and populate the same
+		        $.ajax({type: "POST",
+					  	url: "/OnlineSurvey/rest/Survey/CreateSurvey",	
+					  	data: $("#createSurveyForm").serialize()					  					  
+				}).done(function(products) {
+					    console.log(products);
+
+					    if(products.Result == "OK"){							    	
+					    	alertify.success("Survey has been added successfully");
+							
+					    	//Reload the table
+					    	 $('#SurveyTableContainer').jtable('load');
+					    	//show the create review DIV
+				        	$(".contact-form").hide();
+				        	//Hide the button - create survey
+				        	$(".inputButton").show();				        	
+						}else{
+							alertify.error("Survey couldn't be added. Try again later.");
+						}					    
+					});	
+		        });       	
+
 	        jQuery.validator.setDefaults({
 	        	  debug: true,
 	        	  success: "valid"
@@ -107,9 +131,10 @@
 	        	$("#createSurveyForm").validate({
 	        	  submitHandler: function(form) {
 
-	        		  console.log( "Handler for .submit() called." );
-		        	  event.preventDefault();
-	        		//  form.submit();
+	        		  console.log( "Handler createSurveyForm called. " );
+		        	  //event.preventDefault();
+		        	  $("#dummyDiv").click();
+		        	 
 	        	  },
 	        	  rules: {
 	        		SurveyName: {
@@ -246,6 +271,7 @@
 	<br>
 		<div id="SurveyTableContainer"></div>
 		<br>
+		<div id="dummyDiv"></div>
 		<div>			
 			 <span><input id="createSurvey" class="inputButton" value="Create Survey"></span>			 		
 		</div>

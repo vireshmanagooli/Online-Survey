@@ -66,6 +66,30 @@ public class CustomerDAO {
 	}
 	
 	/**
+	 * Get the userList based on distribution list (DL)
+	 * @param customerDL
+	 * @return
+	 */
+	public List<CustomerBean> getCustomersFromDL(String customerDL){
+		
+		Configuration configuration=new Configuration();
+		configuration.configure();
+		ServiceRegistry sr= new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		SessionFactory sf=configuration.buildSessionFactory(sr);				
+		Session ss=sf.openSession();
+		ss.beginTransaction();		
+		
+		Query queryResult = ss.createQuery("from com.onlinesurvey.bean.CustomerBean WHERE CustomerDL = '"+customerDL+"'");  
+		    
+		List<CustomerBean> allCustomers = queryResult.list();  		  
+		
+		ss.getTransaction().commit();
+		ss.close();
+		
+		return allCustomers;
+	}
+	
+	/**
 	 * Check the Login access
 	 * @param userName
 	 * @param password

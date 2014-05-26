@@ -18,8 +18,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.onlinesurvey.bean.CustomerBean;
 import com.onlinesurvey.bean.SurveyBean;
+import com.onlinesurvey.bean.UserSurveyBean;
+import com.onlinesurvey.dao.CustomerDAO;
 import com.onlinesurvey.dao.SurveyDAO;
+import com.onlinesurvey.dao.UserSurveyDAO;
 
 /**
  * @author Viresh
@@ -102,6 +106,29 @@ public class SurveyService {
 		
 		if(returnId != -1){
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.OK);
+			
+			//Get the user email Ids for the particular DL
+			List<CustomerBean> customerList = new CustomerDAO().getCustomersFromDL(bean.getCustomerDL());
+			
+			for (int i = 0; i < customerList.size(); i++) {  
+				
+				CustomerBean customerBean = customerList.get(i);
+				//Add the newly created survey to userSurvey_table for each email id
+				UserSurveyBean userSurveyBean = new UserSurveyBean();
+				
+				userSurveyBean.setSurveyId(returnId);
+				userSurveyBean.setSurveyDesc(bean.getSurveyDesc());				
+				userSurveyBean.setSurveyName(bean.getSurveyName());
+				userSurveyBean.setCustomerDesc(customerBean.getCustomerDesc());
+				userSurveyBean.setCustomerEmail(customerBean.getCustomerEmail());
+				userSurveyBean.setCustomerName(customerBean.getCustomerName());
+				userSurveyBean.setUserResponse("N");
+				
+				new UserSurveyDAO().addSurvey(userSurveyBean);
+				
+				//Send the Email to the each email.
+			} 
+			
 		}else{
 			
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.ERROR);

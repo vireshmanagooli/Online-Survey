@@ -32,10 +32,17 @@ $(document).ready(function () {
 			    console.log(survey);
 			});
 	  });
+
+	  var UserSurveyId = GetURLParameter('UserSurveyId');	  
+	  var SurveyId = GetURLParameter('SurveyId');
+
+	  $("#UserSurveyId").val(UserSurveyId);
+	  $("#SurveyId").val(SurveyId);
+	  console.log("UserSurveyId : "+ UserSurveyId+" SurveyId : "+ SurveyId);
 	  
 	  //Get the survey from the Database	
 	  $.ajax({type: "POST",
-		  	url: "/OnlineSurvey/rest/Survey/GetSurvey/3",					  	
+		  	url: "/OnlineSurvey/rest/Survey/GetSurvey/"+SurveyId,					  	
 		}).done(function(survey) {
 		    console.log(survey);
 
@@ -48,8 +55,7 @@ $(document).ready(function () {
 				var surveyRecord = survey.Records[0];
 
 				$("#SurveyName").text("SURVEY NAME : "+surveyRecord.SurveyName);
-				$("#SurveyDesc").text("SURVEY DESC : "+surveyRecord.SurveyDesc);
-				$("#SurveyId").text("SURVEY ID : "+surveyRecord.SurveyId);
+				$("#SurveyDesc").text("SURVEY DESC : "+surveyRecord.SurveyDesc);				
 				$("#CustomerDL").text("CUSTOMER DL : "+surveyRecord.CustomerDL);
 
 				$("#Question_1").text(surveyRecord.Question_1);
@@ -154,6 +160,23 @@ $(document).ready(function () {
 			}					    
 		});
 });  
+
+/**
+ * Get URL Parameter
+ */
+function GetURLParameter(sParam){
+	
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
 </script>
 </head>
 <body>
@@ -177,7 +200,8 @@ $(document).ready(function () {
 	<h1 id="SurveyName">There are no surveys currently</h1>
 	<form action="#" id="SurveyDIV">
 		<p id="SurveyDesc"></p><br>
-		<p id="SurveyId"></p><br>
+		<b>SURVEY ID : </b><input type="text" id="SurveyId" name="SurveyId"></input><br>
+		<b>USER SURVEY ID : </b><input type="text" id="UserSurveyId" name="UserSurveyId"></input><br>
 		<p id="CustomerDL"></p><br>
 		<div id="accordion">
 			<h3> Question 1</h3>

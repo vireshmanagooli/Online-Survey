@@ -20,7 +20,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.onlinesurvey.bean.CustomerBean;
+import com.onlinesurvey.bean.UserSurveyBean;
 import com.onlinesurvey.dao.CustomerDAO;
+import com.onlinesurvey.dao.UserSurveyDAO;
 
 /**
  * @author Viresh
@@ -64,9 +66,12 @@ public class CustomerService {
 		JSONObject returnObject = new JSONObject();	
 		
 		boolean isValidUser = new CustomerDAO().checkLogin(userName, password);
+		UserSurveyBean userBean = new UserSurveyDAO().getSurveyForAUser(userName);
 					
 		if(isValidUser){
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.OK);
+			returnObject.put("UserSurveyId", userBean.getUserSurveyId());
+			returnObject.put("SurveyId", userBean.getSurveyId());
 		}else{
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.ERROR);
 		}

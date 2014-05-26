@@ -44,6 +44,33 @@ public class UserSurveyDAO {
 	}
 	
 	/**
+	 * Get survey for the users
+	 * @param customerEmail
+	 * @return
+	 */
+	public UserSurveyBean getSurveyForAUser(String customerEmail){
+		
+		Configuration configuration=new Configuration();
+		configuration.configure();
+		ServiceRegistry sr= new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		SessionFactory sf=configuration.buildSessionFactory(sr);				
+		Session ss=sf.openSession();
+		ss.beginTransaction();		
+		
+		Query queryResult = ss.createQuery("from com.onlinesurvey.bean.UserSurveyBean WHERE CustomerEmail = '"+customerEmail+"' AND UserResponse = 'N'");  
+		    
+		List<UserSurveyBean> allSurvey = queryResult.list();  		  
+		
+		ss.getTransaction().commit();
+		ss.close();
+		
+		if(allSurvey.size() > 0)
+			return allSurvey.get(0);
+		
+		return null;
+	}
+	
+	/**
 	 * Add the userSurveyBean to the database
 	 * @param surveyBean
 	 * @return
@@ -70,7 +97,7 @@ public class UserSurveyDAO {
 	 * Update the userSurvey Row
 	 * @param userSurveyBean
 	 */
-	public void updateCustomer(UserSurveyBean userSurveyBean){
+	public void updateuserSurvey(UserSurveyBean userSurveyBean){
 		
 		Configuration configuration=new Configuration();
 		configuration.configure();

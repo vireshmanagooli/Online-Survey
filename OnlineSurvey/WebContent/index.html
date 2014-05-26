@@ -89,9 +89,10 @@ jQuery(function() {
 					    		console.log(user);
 
 					    		if(user.Result == 'OK'){
+					    								    			
 					    			alertify.success("Logged in successfully");
 					    			//append the surveyId and userSurveyId to the URL.
-									window.location.href = "userSurvey.html";
+									window.location.href = "userSurvey.html?UserSurveyId="+user.UserSurveyId+"&SurveyId="+user.SurveyId;
 								}else{
 									alertify.error("User name or password is incorrect");
 								}					    

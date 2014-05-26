@@ -65,18 +65,6 @@ public class UserSurveyService {
 		return returnObject.toString();
 	}
 	
-	@Path("/AddUserSurvey")
-	@POST	
-	@Produces(MediaType.APPLICATION_JSON) 
-	public String addUserSurvey() throws JSONException {
-				
-		JSONObject returnObject = new JSONObject();	
-		JSONArray returnArray = new JSONArray();
-		
-		List<SurveyBean> allSurvey = new SurveyDAO().getAllSurvey();
-		
-		return null;
-	}
 	
 	@Path("/UpdateUserSurvey")
 	@POST	

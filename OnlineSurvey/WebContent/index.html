@@ -25,6 +25,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 <!-- Login and Registration Ends -->
 
+<!-- Include Alertify library -->
+<script src="./js/alertify.js-0.3.11/lib/alertify.min.js"></script>
+<!-- include the core styles -->
+<link rel="stylesheet" href="./js/alertify.js-0.3.11/themes/alertify.core.css" />
+<!-- include a theme, can be included into the core instead of 2 separate files -->
+<link rel="stylesheet" href="./js/alertify.js-0.3.11/themes/alertify.default.css" />
+
 <script type="text/javascript" src="./js/jquery-hover-effect.js"></script>
 <script type="text/javascript">
 //Image Hover
@@ -38,6 +45,12 @@ jQuery(function() {
 <script src="./js/jquery.magnific-popup.js" type="text/javascript"></script>
 <link href="./css/magnific-popup.css" rel="stylesheet" type="text/css">
 		<script>
+		//Validates the Email Address
+		function IsEmail(email) {
+	  			var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	  			return regex.test(email);
+		}	
+		
 			$(document).ready(function() {
 				$('.popup-with-zoom-anim').magnificPopup({
 					type: 'inline',
@@ -50,6 +63,44 @@ jQuery(function() {
 					removalDelay: 300,
 					mainClass: 'my-mfp-zoom-in'
 			});
+
+				//when login button is clicked.
+				$("#loginButton").click(function(){
+					var username = $("#userName").val();
+					var password = $("#password").val();
+
+					//if username=admin and password = admin then take him to admin screen
+					if(username == 'admin' && password == 'admin'){
+						window.location.href = "adminProducts.html";
+					}else{
+						//else validate the user name and password then navigate the screen to survey screen
+
+						//Check username and password are not empty
+						if(!username || !password){
+							alertify.error("user name or password can't be empty");
+						}else if(!IsEmail(username)){
+							alertify.error("Not a valid email address");
+						}else{
+							
+							//Check the user name and password from DB
+							 $.ajax({type: "POST",
+					  			url: "/OnlineSurvey/rest/Customer/CheckLogin/"+username+"/"+password,					  	
+							}).done(function(user) {
+					    		console.log(user);
+
+					    		if(user.Result == 'OK'){
+					    			alertify.success("Logged in successfully");
+					    			//append the surveyId and userSurveyId to the URL.
+									window.location.href = "userSurvey.html";
+								}else{
+									alertify.error("User name or password is incorrect");
+								}					    
+							});
+							
+						}
+					}
+					
+				});
 		});
 		</script>
 <!--nav-->
@@ -155,11 +206,11 @@ jQuery(function() {
 			<div class="user_login">
 				<form>
 					<label>Email / Username</label>
-					<input type="text" />
+					<input id="userName" type="text" />
 					<br />
 
 					<label>Password</label>
-					<input type="password" />
+					<input id="password" type="password" />
 					<br />
 
 					<div class="checkbox">
@@ -169,7 +220,7 @@ jQuery(function() {
 
 					<div class="action_btns">
 						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-						<div class="one_half last"><a href="adminProducts.html" class="btn btn_red">Login</a></div>
+						<div class="one_half last"><a href="#" id="loginButton" class="btn btn_red">Login</a></div>
 					</div>
 				</form>
 
@@ -417,8 +468,9 @@ jQuery(function() {
 			$(".header_title").text('Login');
 			return false;
 		});
-
+		
 	})
+	
 </script>
 
 </html>

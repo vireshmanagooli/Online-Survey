@@ -66,6 +66,30 @@ public class CustomerDAO {
 	}
 	
 	/**
+	 * Check the Login access
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
+	public boolean checkLogin(String userName, String password){
+		
+		Configuration configuration=new Configuration();
+		configuration.configure();
+		ServiceRegistry sr= new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		SessionFactory sf=configuration.buildSessionFactory(sr);				
+		Session ss=sf.openSession();
+		ss.beginTransaction();		
+		
+		Query queryResult = ss.createQuery("from com.onlinesurvey.bean.CustomerBean WHERE CustomerEmail = '"+userName+"' AND  CustomerPwd = '"+password+"'");  
+		    
+		List<CustomerBean> allCustomers = queryResult.list();  		  
+		
+		ss.getTransaction().commit();
+		ss.close();
+		
+		return allCustomers.size() > 0;
+	}
+	/**
 	 * Delete the customer details
 	 * @param customerId
 	 */

@@ -9,6 +9,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
@@ -50,6 +51,25 @@ public class CustomerService {
 					
 		returnObject.put(ServiceConstants.RESULT, ServiceConstants.OK);
 		returnObject.put(ServiceConstants.RECORDS,returnArray);
+		
+		System.out.println("GetProducts : " + returnObject.toString());
+		return returnObject.toString();
+	}
+	
+	@Path("/CheckLogin/{userName}/{password}")
+	@POST	
+	@Produces(MediaType.APPLICATION_JSON) 
+	public String checkLogin(@PathParam("userName") String userName, @PathParam("password") String password) throws JSONException {
+				
+		JSONObject returnObject = new JSONObject();	
+		
+		boolean isValidUser = new CustomerDAO().checkLogin(userName, password);
+					
+		if(isValidUser){
+			returnObject.put(ServiceConstants.RESULT, ServiceConstants.OK);
+		}else{
+			returnObject.put(ServiceConstants.RESULT, ServiceConstants.ERROR);
+		}
 		
 		System.out.println("GetProducts : " + returnObject.toString());
 		return returnObject.toString();

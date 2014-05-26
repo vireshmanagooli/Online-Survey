@@ -44,64 +44,104 @@ $(document).ready(function () {
 				$("#CustomerDL").text("CUSTOMER DL : "+surveyRecord.CustomerDL);
 
 				$("#Question_1").text(surveyRecord.Question_1);
-				$("#Option_1_1").val(surveyRecord.Option_1_1).append("<label>"+surveyRecord.Option_1_1+"</label>");
-				$("#Option_1_2").val(surveyRecord.Option_1_2).text(surveyRecord.Option_1_2);
-				$("#Option_1_3").val(surveyRecord.Option_1_3).text(surveyRecord.Option_1_3);
-				$("#Option_1_4").val(surveyRecord.Option_1_4).text(surveyRecord.Option_1_4);							
+				$("#Option_1_1").val(surveyRecord.Option_1_1);
+				$("#L_Option_1_1").text(surveyRecord.Option_1_1);
+				$("#Option_1_2").val(surveyRecord.Option_1_2);
+				$("#L_Option_1_2").text(surveyRecord.Option_1_2);
+				$("#Option_1_3").val(surveyRecord.Option_1_3);
+				$("#L_Option_1_3").text(surveyRecord.Option_1_3);
+				$("#Option_1_4").val(surveyRecord.Option_1_4);
+				$("#L_Option_1_4").text(surveyRecord.Option_1_4);
 
-/* 				surveyRecord.Question_2
-				surveyRecord.Option_2_1
-				surveyRecord.Option_2_2
-				surveyRecord.Option_2_3
-				surveyRecord.Option_2_4
+				$("#Question_2").text(surveyRecord.Question_2);
+				$("#Option_2_1").val(surveyRecord.Option_2_1);
+				$("#L_Option_2_1").text(surveyRecord.Option_2_1);
+				$("#Option_2_2").val(surveyRecord.Option_2_2);
+				$("#L_Option_2_2").text(surveyRecord.Option_2_2);
+				$("#Option_2_3").val(surveyRecord.Option_2_3);
+				$("#L_Option_2_3").text(surveyRecord.Option_2_3);
+				$("#Option_2_4").val(surveyRecord.Option_2_4);
+				$("#L_Option_2_4").text(surveyRecord.Option_2_4);
 
-				surveyRecord.Question_3
-				surveyRecord.Option_3_1
-				surveyRecord.Option_3_2
-				surveyRecord.Option_3_3
-				surveyRecord.Option_3_4
+				$("#Question_3").text(surveyRecord.Question_3);
+				$("#Option_3_1").val(surveyRecord.Option_3_1);
+				$("#L_Option_3_1").text(surveyRecord.Option_3_1);
+				$("#Option_3_2").val(surveyRecord.Option_3_2);
+				$("#L_Option_3_2").text(surveyRecord.Option_3_2);
+				$("#Option_3_3").val(surveyRecord.Option_3_3);
+				$("#L_Option_3_3").text(surveyRecord.Option_3_3);
+				$("#Option_3_4").val(surveyRecord.Option_3_4);
+				$("#L_Option_3_4").text(surveyRecord.Option_3_4);
 
-				surveyRecord.Question_4
-				surveyRecord.Option_4_1
-				surveyRecord.Option_4_2
-				surveyRecord.Option_4_3
-				surveyRecord.Option_4_4
+				$("#Question_4").text(surveyRecord.Question_4);
+				$("#Option_4_1").val(surveyRecord.Option_4_1);
+				$("#L_Option_4_1").text(surveyRecord.Option_4_1);
+				$("#Option_4_2").val(surveyRecord.Option_4_2);
+				$("#L_Option_4_2").text(surveyRecord.Option_4_2);
+				$("#Option_4_3").val(surveyRecord.Option_4_3);
+				$("#L_Option_4_3").text(surveyRecord.Option_4_3);
+				$("#Option_4_4").val(surveyRecord.Option_4_4);
+				$("#L_Option_4_4").text(surveyRecord.Option_4_4);
 
-				surveyRecord.Question_5
-				surveyRecord.Option_5_1
-				surveyRecord.Option_5_2
-				surveyRecord.Option_5_3
-				surveyRecord.Option_5_4
+				$("#Question_5").text(surveyRecord.Question_5);
+				$("#Option_5_1").val(surveyRecord.Option_5_1);
+				$("#L_Option_5_1").text(surveyRecord.Option_5_1);
+				$("#Option_5_2").val(surveyRecord.Option_5_2);
+				$("#L_Option_5_2").text(surveyRecord.Option_5_2);
+				$("#Option_5_3").val(surveyRecord.Option_5_3);
+				$("#L_Option_5_3").text(surveyRecord.Option_5_3);
+				$("#Option_5_4").val(surveyRecord.Option_5_4);
+				$("#L_Option_5_4").text(surveyRecord.Option_5_4);
 
-				surveyRecord.Question_6
-				surveyRecord.Option_6_1
-				surveyRecord.Option_6_2
-				surveyRecord.Option_6_3
-				surveyRecord.Option_6_4
+				$("#Question_6").text(surveyRecord.Question_6);
+				$("#Option_6_1").val(surveyRecord.Option_6_1);
+				$("#L_Option_6_1").text(surveyRecord.Option_6_1);
+				$("#Option_6_2").val(surveyRecord.Option_6_2);
+				$("#L_Option_6_2").text(surveyRecord.Option_6_2);
+				$("#Option_6_3").val(surveyRecord.Option_6_3);
+				$("#L_Option_6_3").text(surveyRecord.Option_6_3);
+				$("#Option_6_4").val(surveyRecord.Option_6_4);
+				$("#L_Option_6_4").text(surveyRecord.Option_6_4);
 
-				surveyRecord.Question_7
-				surveyRecord.Option_7_1
-				surveyRecord.Option_7_2
-				surveyRecord.Option_7_3
-				surveyRecord.Option_7_4
+				$("#Question_7").text(surveyRecord.Question_7);
+				$("#Option_7_1").val(surveyRecord.Option_7_1);
+				$("#L_Option_7_1").text(surveyRecord.Option_7_1);
+				$("#Option_7_2").val(surveyRecord.Option_7_2);
+				$("#L_Option_7_2").text(surveyRecord.Option_7_2);
+				$("#Option_7_3").val(surveyRecord.Option_7_3);
+				$("#L_Option_7_3").text(surveyRecord.Option_7_3);
+				$("#Option_7_4").val(surveyRecord.Option_7_4);
+				$("#L_Option_7_4").text(surveyRecord.Option_7_4);
 
-				surveyRecord.Question_8
-				surveyRecord.Option_8_1
-				surveyRecord.Option_8_2
-				surveyRecord.Option_8_3
-				surveyRecord.Option_8_4
+				$("#Question_8").text(surveyRecord.Question_8);
+				$("#Option_8_1").val(surveyRecord.Option_8_1);
+				$("#L_Option_8_1").text(surveyRecord.Option_8_1);
+				$("#Option_8_2").val(surveyRecord.Option_8_2);
+				$("#L_Option_8_2").text(surveyRecord.Option_8_2);
+				$("#Option_8_3").val(surveyRecord.Option_8_3);
+				$("#L_Option_8_3").text(surveyRecord.Option_8_3);
+				$("#Option_8_4").val(surveyRecord.Option_8_4);
+				$("#L_Option_8_4").text(surveyRecord.Option_8_4);
 
-				surveyRecord.Question_9
-				surveyRecord.Option_9_1
-				surveyRecord.Option_9_2
-				surveyRecord.Option_9_3
-				surveyRecord.Option_9_4
+				$("#Question_9").text(surveyRecord.Question_9);
+				$("#Option_9_1").val(surveyRecord.Option_9_1);
+				$("#L_Option_9_1").text(surveyRecord.Option_9_1);
+				$("#Option_9_2").val(surveyRecord.Option_9_2);
+				$("#L_Option_9_2").text(surveyRecord.Option_9_2);
+				$("#Option_9_3").val(surveyRecord.Option_9_3);
+				$("#L_Option_9_3").text(surveyRecord.Option_9_3);
+				$("#Option_9_4").val(surveyRecord.Option_9_4);
+				$("#L_Option_9_4").text(surveyRecord.Option_9_4);
 
-				surveyRecord.Question_10
-				surveyRecord.Option_10_1
-				surveyRecord.Option_10_2
-				surveyRecord.Option_10_3
-				surveyRecord.Option_10_4 */
+				$("#Question_10").text(surveyRecord.Question_10);
+				$("#Option_10_1").val(surveyRecord.Option_10_1);
+				$("#L_Option_10_1").text(surveyRecord.Option_10_1);
+				$("#Option_10_2").val(surveyRecord.Option_10_2);
+				$("#L_Option_10_2").text(surveyRecord.Option_10_2);
+				$("#Option_10_3").val(surveyRecord.Option_10_3);
+				$("#L_Option_10_3").text(surveyRecord.Option_10_3);
+				$("#Option_10_4").val(surveyRecord.Option_10_4);
+				$("#L_Option_10_4").text(surveyRecord.Option_10_4);							
 			}					    
 		});
 });  
@@ -116,8 +156,7 @@ $(document).ready(function () {
 				</div>
 				<div class="cssmenu">
 					<ul>
-						<li class="active"><a href="userSurvey.html">Survey</a></li>
-						<li><a href="userStrategy.html">Strategy</a></li>
+						<li class="active"><a href="userSurvey.html">Survey</a></li>						
 					</ul>
 				</div>
 				<div class="clear"></div>
@@ -128,89 +167,89 @@ $(document).ready(function () {
 	
 	<h1 id="SurveyName">There are no surveys currently</h1>
 	<div id="SurveyDIV">
-		<p id="SurveyDesc"></p>
-		<p id="SurveyId"></p>
-		<p id="CustomerDL"></p>
+		<p id="SurveyDesc"></p><br>
+		<p id="SurveyId"></p><br>
+		<p id="CustomerDL"></p><br>
 		<div id="accordion">
 			<h3> Question 1</h3>
 			<div>
 				<p id="Question_1"></p>
-				<input type="radio" name="Question_1" id="Option_1_1"><br>
-				<input type="radio" name="Question_1" id="Option_1_2"><br>
-				<input type="radio" name="Question_1" id="Option_1_3"><br>
-				<input type="radio" name="Question_1" id="Option_1_4">
+				<input type="radio" name="Question_1" id="Option_1_1"><label id="L_Option_1_1"></label><br>
+				<input type="radio" name="Question_1" id="Option_1_2"><label id="L_Option_1_2"></label><br>
+				<input type="radio" name="Question_1" id="Option_1_3"><label id="L_Option_1_3"></label><br>
+				<input type="radio" name="Question_1" id="Option_1_4"><label id="L_Option_1_4"></label>
 			</div>
 			<h3> Question 2</h3>
 			<div>
 				<p id="Question_2"></p>
-				<input type="radio" name="Question_2" id="Option_2_1"><br>
-				<input type="radio" name="Question_2" id="Option_2_2"><br>
-				<input type="radio" name="Question_2" id="Option_2_3"><br>
-				<input type="radio" name="Question_2" id="Option_2_4">
+				<input type="radio" name="Question_2" id="Option_2_1"><label id="L_Option_2_1"></label><br>
+				<input type="radio" name="Question_2" id="Option_2_2"><label id="L_Option_2_2"></label><br>
+				<input type="radio" name="Question_2" id="Option_2_3"><label id="L_Option_2_3"></label><br>
+				<input type="radio" name="Question_2" id="Option_2_4"><label id="L_Option_2_4"></label>
 			</div>
 			<h3> Question 3</h3>
 			<div>
 				<p id="Question_3"></p>
-				<input type="radio" name="Question_3" id="Option_3_1"><br>
-				<input type="radio" name="Question_3" id="Option_3_2"><br>
-				<input type="radio" name="Question_3" id="Option_3_3"><br>
-				<input type="radio" name="Question_3" id="Option_3_4">
+				<input type="radio" name="Question_3" id="Option_3_1"><label id="L_Option_3_1"></label><br>
+				<input type="radio" name="Question_3" id="Option_3_2"><label id="L_Option_3_2"></label><br>
+				<input type="radio" name="Question_3" id="Option_3_3"><label id="L_Option_3_3"></label><br>
+				<input type="radio" name="Question_3" id="Option_3_4"><label id="L_Option_3_4"></label>
 			</div>
 			<h3> Question 4</h3>
 			<div>
 				<p id="Question_4"></p>
-				<input type="radio" name="Question_4" id="Option_4_1"><br>
-				<input type="radio" name="Question_4" id="Option_4_2"><br>
-				<input type="radio" name="Question_4" id="Option_4_3"><br>
-				<input type="radio" name="Question_4" id="Option_4_4">
+				<input type="radio" name="Question_4" id="Option_4_1"><label id="L_Option_4_1"></label><br>
+				<input type="radio" name="Question_4" id="Option_4_2"><label id="L_Option_4_2"></label><br>
+				<input type="radio" name="Question_4" id="Option_4_3"><label id="L_Option_4_3"></label><br>
+				<input type="radio" name="Question_4" id="Option_4_4"><label id="L_Option_4_4"></label>
 			</div>
 			<h3> Question 5</h3>
 			<div>
 				<p id="Question_5"></p>
-				<input type="radio" name="Question_5" id="Option_5_1"><br>
-				<input type="radio" name="Question_5" id="Option_5_2"><br>
-				<input type="radio" name="Question_5" id="Option_5_3"><br>
-				<input type="radio" name="Question_5" id="Option_5_4">
+				<input type="radio" name="Question_5" id="Option_5_1"><label id="L_Option_5_1"></label><br>
+				<input type="radio" name="Question_5" id="Option_5_2"><label id="L_Option_5_2"></label><br>
+				<input type="radio" name="Question_5" id="Option_5_3"><label id="L_Option_5_3"></label><br>
+				<input type="radio" name="Question_5" id="Option_5_4"><label id="L_Option_5_4"></label>
 			</div>
 			<h3> Question 6</h3>
 			<div>
 				<p id="Question_6"></p>
-				<input type="radio" name="Question_6" id="Option_6_1"><br>
-				<input type="radio" name="Question_6" id="Option_6_2"><br>
-				<input type="radio" name="Question_6" id="Option_6_3"><br>
-				<input type="radio" name="Question_6" id="Option_6_4">
+				<input type="radio" name="Question_6" id="Option_6_1"><label id="L_Option_6_1"></label><br>
+				<input type="radio" name="Question_6" id="Option_6_2"><label id="L_Option_6_2"></label><br>
+				<input type="radio" name="Question_6" id="Option_6_3"><label id="L_Option_6_3"></label><br>
+				<input type="radio" name="Question_6" id="Option_6_4"><label id="L_Option_6_4"></label>
 			</div>
 			<h3> Question 7</h3>
 			<div>
 				<p id="Question_7"></p>
-				<input type="radio" name="Question_7" id="Option_7_1"><br>
-				<input type="radio" name="Question_7" id="Option_7_2"><br>
-				<input type="radio" name="Question_7" id="Option_7_3"><br>
-				<input type="radio" name="Question_7" id="Option_7_4">
+				<input type="radio" name="Question_7" id="Option_7_1"><label id="L_Option_7_1"></label><br>
+				<input type="radio" name="Question_7" id="Option_7_2"><label id="L_Option_7_2"></label><br>
+				<input type="radio" name="Question_7" id="Option_7_3"><label id="L_Option_7_3"></label><br>
+				<input type="radio" name="Question_7" id="Option_7_4"><label id="L_Option_7_4"></label>
 			</div>
 			<h3> Question 8</h3>
 			<div>
 				<p id="Question_8"></p>
-				<input type="radio" name="Question_8" id="Option_8_1"><br>
-				<input type="radio" name="Question_8" id="Option_8_2"><br>
-				<input type="radio" name="Question_8" id="Option_8_3"><br>
-				<input type="radio" name="Question_8" id="Option_8_4">
+				<input type="radio" name="Question_8" id="Option_8_1"><label id="L_Option_8_1"></label><br>
+				<input type="radio" name="Question_8" id="Option_8_2"><label id="L_Option_8_2"></label><br>
+				<input type="radio" name="Question_8" id="Option_8_3"><label id="L_Option_8_3"></label><br>
+				<input type="radio" name="Question_8" id="Option_8_4"><label id="L_Option_8_4"></label>
 			</div>
 			<h3> Question 9</h3>
 			<div>
 				<p id="Question_9"></p>
-				<input type="radio" name="Question_9" id="Option_9_1"><br>
-				<input type="radio" name="Question_9" id="Option_9_2"><br>
-				<input type="radio" name="Question_9" id="Option_9_3"><br>
-				<input type="radio" name="Question_9" id="Option_9_4">
+				<input type="radio" name="Question_9" id="Option_9_1"><label id="L_Option_9_1"></label><br>
+				<input type="radio" name="Question_9" id="Option_9_2"><label id="L_Option_9_2"></label><br>
+				<input type="radio" name="Question_9" id="Option_9_3"><label id="L_Option_9_3"></label><br>
+				<input type="radio" name="Question_9" id="Option_9_4"><label id="L_Option_9_4"></label>
 			</div>
 			<h3> Question 10</h3>
 			<div>
 				<p id="Question_10"></p>
-				<input type="radio" name="Question_10" id="Option_10_1"><br>
-				<input type="radio" name="Question_10" id="Option_10_2"><br>
-				<input type="radio" name="Question_10" id="Option_10_3"><br>
-				<input type="radio" name="Question_10" id="Option_10_4">
+				<input type="radio" name="Question_10" id="Option_10_1"><label id="L_Option_10_1"></label><br>
+				<input type="radio" name="Question_10" id="Option_10_2"><label id="L_Option_10_2"></label><br>
+				<input type="radio" name="Question_10" id="Option_10_3"><label id="L_Option_10_3"></label><br>
+				<input type="radio" name="Question_10" id="Option_10_4"><label id="L_Option_10_4"></label>
 			</div>
 			
 		</div>

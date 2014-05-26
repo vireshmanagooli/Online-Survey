@@ -18,10 +18,94 @@
 	media="all" />
 
 <script>
-  $(function() {
-    $( "#accordion" ).accordion();
-  });
-  </script>
+$(document).ready(function () {
+	  $("#accordion").accordion();
+
+	  //Hide the surveyDIV on page load.
+	  $("#SurveyDIV").hide();
+
+	  //Get the survey from the Database	
+	  $.ajax({type: "POST",
+		  	url: "/OnlineSurvey/rest/Survey/GetSurvey/3",					  	
+		}).done(function(survey) {
+		    console.log(survey);
+
+		    if(survey.Records.length == 0){
+		    	alertify.error("There are no surveys currently");
+			}else{
+				//Hide the surveyDIV on page load.
+				$("#SurveyDIV").show();
+				//Bind all the survey details.
+				var surveyRecord = survey.Records[0];
+
+				$("#SurveyName").text("SURVEY NAME : "+surveyRecord.SurveyName);
+				$("#SurveyDesc").text("SURVEY DESC : "+surveyRecord.SurveyDesc);
+				$("#SurveyId").text("SURVEY ID : "+surveyRecord.SurveyId);
+				$("#CustomerDL").text("CUSTOMER DL : "+surveyRecord.CustomerDL);
+
+				$("#Question_1").text(surveyRecord.Question_1);
+				$("#Option_1_1").val(surveyRecord.Option_1_1).append("<label>"+surveyRecord.Option_1_1+"</label>");
+				$("#Option_1_2").val(surveyRecord.Option_1_2).text(surveyRecord.Option_1_2);
+				$("#Option_1_3").val(surveyRecord.Option_1_3).text(surveyRecord.Option_1_3);
+				$("#Option_1_4").val(surveyRecord.Option_1_4).text(surveyRecord.Option_1_4);							
+
+/* 				surveyRecord.Question_2
+				surveyRecord.Option_2_1
+				surveyRecord.Option_2_2
+				surveyRecord.Option_2_3
+				surveyRecord.Option_2_4
+
+				surveyRecord.Question_3
+				surveyRecord.Option_3_1
+				surveyRecord.Option_3_2
+				surveyRecord.Option_3_3
+				surveyRecord.Option_3_4
+
+				surveyRecord.Question_4
+				surveyRecord.Option_4_1
+				surveyRecord.Option_4_2
+				surveyRecord.Option_4_3
+				surveyRecord.Option_4_4
+
+				surveyRecord.Question_5
+				surveyRecord.Option_5_1
+				surveyRecord.Option_5_2
+				surveyRecord.Option_5_3
+				surveyRecord.Option_5_4
+
+				surveyRecord.Question_6
+				surveyRecord.Option_6_1
+				surveyRecord.Option_6_2
+				surveyRecord.Option_6_3
+				surveyRecord.Option_6_4
+
+				surveyRecord.Question_7
+				surveyRecord.Option_7_1
+				surveyRecord.Option_7_2
+				surveyRecord.Option_7_3
+				surveyRecord.Option_7_4
+
+				surveyRecord.Question_8
+				surveyRecord.Option_8_1
+				surveyRecord.Option_8_2
+				surveyRecord.Option_8_3
+				surveyRecord.Option_8_4
+
+				surveyRecord.Question_9
+				surveyRecord.Option_9_1
+				surveyRecord.Option_9_2
+				surveyRecord.Option_9_3
+				surveyRecord.Option_9_4
+
+				surveyRecord.Question_10
+				surveyRecord.Option_10_1
+				surveyRecord.Option_10_2
+				surveyRecord.Option_10_3
+				surveyRecord.Option_10_4 */
+			}					    
+		});
+});  
+</script>
 </head>
 <body>
 	<div class="header_bg">
@@ -41,47 +125,95 @@
 		</div>
 	</div>
 	<br>
-	<div id="accordion">
-		<h3>Section 1</h3>
-		<div>
-			<p>Mauris mauris ante, blandit et, ultrices a, suscipit eget,
-				quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida
-				in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam
-				mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a
-				velit eu ante scelerisque vulputate.</p>
-		</div>
-		<h3>Section 2</h3>
-		<div>
-			<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
-				sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
-				turpis porttitor velit, faucibus interdum tellus libero ac justo.
-				Vivamus non quam. In suscipit faucibus urna.</p>
-		</div>
-		<h3>Section 3</h3>
-		<div>
-			<p>Nam enim risus, molestie et, porta ac, aliquam ac, risus.
-				Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in
-				pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac
-				felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam
-				nisi, eu iaculis leo purus venenatis dui.</p>
-			<ul>
-				<li>List item one</li>
-				<li>List item two</li>
-				<li>List item three</li>
-			</ul>
-		</div>
-		<h3>Section 4</h3>
-		<div>
-			<p>Cras dictum. Pellentesque habitant morbi tristique senectus et
-				netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum
-				primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-				Aenean lacinia mauris vel est.</p>
-			<p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-				consequat lectus. Class aptent taciti sociosqu ad litora torquent
-				per conubia nostra, per inceptos himenaeos.</p>
+	
+	<h1 id="SurveyName">There are no surveys currently</h1>
+	<div id="SurveyDIV">
+		<p id="SurveyDesc"></p>
+		<p id="SurveyId"></p>
+		<p id="CustomerDL"></p>
+		<div id="accordion">
+			<h3> Question 1</h3>
+			<div>
+				<p id="Question_1"></p>
+				<input type="radio" name="Question_1" id="Option_1_1"><br>
+				<input type="radio" name="Question_1" id="Option_1_2"><br>
+				<input type="radio" name="Question_1" id="Option_1_3"><br>
+				<input type="radio" name="Question_1" id="Option_1_4">
+			</div>
+			<h3> Question 2</h3>
+			<div>
+				<p id="Question_2"></p>
+				<input type="radio" name="Question_2" id="Option_2_1"><br>
+				<input type="radio" name="Question_2" id="Option_2_2"><br>
+				<input type="radio" name="Question_2" id="Option_2_3"><br>
+				<input type="radio" name="Question_2" id="Option_2_4">
+			</div>
+			<h3> Question 3</h3>
+			<div>
+				<p id="Question_3"></p>
+				<input type="radio" name="Question_3" id="Option_3_1"><br>
+				<input type="radio" name="Question_3" id="Option_3_2"><br>
+				<input type="radio" name="Question_3" id="Option_3_3"><br>
+				<input type="radio" name="Question_3" id="Option_3_4">
+			</div>
+			<h3> Question 4</h3>
+			<div>
+				<p id="Question_4"></p>
+				<input type="radio" name="Question_4" id="Option_4_1"><br>
+				<input type="radio" name="Question_4" id="Option_4_2"><br>
+				<input type="radio" name="Question_4" id="Option_4_3"><br>
+				<input type="radio" name="Question_4" id="Option_4_4">
+			</div>
+			<h3> Question 5</h3>
+			<div>
+				<p id="Question_5"></p>
+				<input type="radio" name="Question_5" id="Option_5_1"><br>
+				<input type="radio" name="Question_5" id="Option_5_2"><br>
+				<input type="radio" name="Question_5" id="Option_5_3"><br>
+				<input type="radio" name="Question_5" id="Option_5_4">
+			</div>
+			<h3> Question 6</h3>
+			<div>
+				<p id="Question_6"></p>
+				<input type="radio" name="Question_6" id="Option_6_1"><br>
+				<input type="radio" name="Question_6" id="Option_6_2"><br>
+				<input type="radio" name="Question_6" id="Option_6_3"><br>
+				<input type="radio" name="Question_6" id="Option_6_4">
+			</div>
+			<h3> Question 7</h3>
+			<div>
+				<p id="Question_7"></p>
+				<input type="radio" name="Question_7" id="Option_7_1"><br>
+				<input type="radio" name="Question_7" id="Option_7_2"><br>
+				<input type="radio" name="Question_7" id="Option_7_3"><br>
+				<input type="radio" name="Question_7" id="Option_7_4">
+			</div>
+			<h3> Question 8</h3>
+			<div>
+				<p id="Question_8"></p>
+				<input type="radio" name="Question_8" id="Option_8_1"><br>
+				<input type="radio" name="Question_8" id="Option_8_2"><br>
+				<input type="radio" name="Question_8" id="Option_8_3"><br>
+				<input type="radio" name="Question_8" id="Option_8_4">
+			</div>
+			<h3> Question 9</h3>
+			<div>
+				<p id="Question_9"></p>
+				<input type="radio" name="Question_9" id="Option_9_1"><br>
+				<input type="radio" name="Question_9" id="Option_9_2"><br>
+				<input type="radio" name="Question_9" id="Option_9_3"><br>
+				<input type="radio" name="Question_9" id="Option_9_4">
+			</div>
+			<h3> Question 10</h3>
+			<div>
+				<p id="Question_10"></p>
+				<input type="radio" name="Question_10" id="Option_10_1"><br>
+				<input type="radio" name="Question_10" id="Option_10_2"><br>
+				<input type="radio" name="Question_10" id="Option_10_3"><br>
+				<input type="radio" name="Question_10" id="Option_10_4">
+			</div>
+			
 		</div>
 	</div>
-
-
 </body>
 </html>

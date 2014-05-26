@@ -15,3 +15,4 @@ com.onlinesurvey.service.ProductsService
 com.onlinesurvey.service.CustomerService
 com.onlinesurvey.service.StrategyService
 com.onlinesurvey.service.SurveyService
+com.onlinesurvey.service.UserSurveyService

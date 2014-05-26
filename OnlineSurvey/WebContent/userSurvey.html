@@ -24,6 +24,15 @@ $(document).ready(function () {
 	  //Hide the surveyDIV on page load.
 	  $("#SurveyDIV").hide();
 
+	  $("#surveySubmit").click(function(){
+		  $.ajax({type: "POST",
+			  	url: "/OnlineSurvey/rest/UserSurvey/UpdateUserSurvey",	
+			  	data: $("#SurveyDIV").serialize()				  	
+			}).done(function(survey) {
+			    console.log(survey);
+			});
+	  });
+	  
 	  //Get the survey from the Database	
 	  $.ajax({type: "POST",
 		  	url: "/OnlineSurvey/rest/Survey/GetSurvey/3",					  	
@@ -166,7 +175,7 @@ $(document).ready(function () {
 	<br>
 	
 	<h1 id="SurveyName">There are no surveys currently</h1>
-	<div id="SurveyDIV">
+	<form action="#" id="SurveyDIV">
 		<p id="SurveyDesc"></p><br>
 		<p id="SurveyId"></p><br>
 		<p id="CustomerDL"></p><br>
@@ -253,6 +262,10 @@ $(document).ready(function () {
 			</div>
 			
 		</div>
-	</div>
+		<br>
+		<div>
+			<span><input id="surveySubmit" class="inputButton" value="Submit"></span>
+		</div>
+	</form>
 </body>
 </html>

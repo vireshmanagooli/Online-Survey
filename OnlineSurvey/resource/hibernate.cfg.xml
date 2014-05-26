@@ -26,11 +26,11 @@
 
         <!-- Drop and re-create the database schema on startup -->
         <!-- <property name="hbm2ddl.auto">create</property> -->
-
-		<mapping class="com.onlinesurvey.bean.User"></mapping>
+		
 		<mapping class="com.onlinesurvey.bean.CustomerBean"></mapping>
 		<mapping class="com.onlinesurvey.bean.ProductsBean"></mapping>
 		<mapping class="com.onlinesurvey.bean.SurveyBean"></mapping>
+		<mapping class="com.onlinesurvey.bean.UserSurveyBean"></mapping>
     </session-factory>
 
 </hibernate-configuration>

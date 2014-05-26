@@ -44,6 +44,30 @@ public class SurveyDAO {
 	}
 	
 	/**
+	 * Returns a Survey
+	 * @param SurveyId
+	 * @return
+	 */
+	public List<SurveyBean> getSurvey(Long SurveyId){
+		
+		Configuration configuration=new Configuration();
+		configuration.configure();
+		ServiceRegistry sr= new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		SessionFactory sf=configuration.buildSessionFactory(sr);				
+		Session ss=sf.openSession();
+		ss.beginTransaction();		
+		
+		Query queryResult = ss.createQuery("from com.onlinesurvey.bean.SurveyBean where SurveyId = '"+SurveyId+"'");  
+		    
+		List<SurveyBean> allSurvey = queryResult.list();  		  
+		
+		ss.getTransaction().commit();
+		ss.close();
+		
+		return allSurvey;
+	}
+	
+	/**
 	 * Add the survey to the database
 	 * @param surveyBean
 	 * @return

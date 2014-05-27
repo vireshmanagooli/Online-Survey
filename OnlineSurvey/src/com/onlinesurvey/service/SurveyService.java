@@ -3,6 +3,7 @@
  */
 package com.onlinesurvey.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import com.onlinesurvey.bean.UserSurveyBean;
 import com.onlinesurvey.dao.CustomerDAO;
 import com.onlinesurvey.dao.SurveyDAO;
 import com.onlinesurvey.dao.UserSurveyDAO;
+import com.onlinesurvey.mail.App;
 
 /**
  * @author Viresh
@@ -110,6 +112,9 @@ public class SurveyService {
 			//Get the user email Ids for the particular DL
 			List<CustomerBean> customerList = new CustomerDAO().getCustomersFromDL(bean.getCustomerDL());
 			
+			
+			List<String> emailToList = new ArrayList<String>();
+			
 			for (int i = 0; i < customerList.size(); i++) {  
 				
 				CustomerBean customerBean = customerList.get(i);
@@ -125,10 +130,16 @@ public class SurveyService {
 				userSurveyBean.setUserResponse("N");
 				
 				new UserSurveyDAO().addSurvey(userSurveyBean);
-				
-				//Send the Email to the each email.
+								
+				//Push the Email address to the list
+				emailToList.add(customerBean.getCustomerEmail());
 			} 
 			
+			//Send the Email to the each email.
+			if(emailToList.size() > 0){
+				String[] emailTo = emailToList.toArray(new String[emailToList.size()]);
+				new App().inviteParticipants(emailTo);
+			}
 		}else{
 			
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.ERROR);

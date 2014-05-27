@@ -16,10 +16,11 @@ public class MailMail
 		this.mailSender = mailSender;
 	}
 	
-	public void sendMail(String dear, String content) {
+	public void sendMail(String dear, String content, String[] to) {
 
 		SimpleMailMessage message = new SimpleMailMessage(simpleMailMessage);
 		
+		message.setTo(to);
 		message.setText(String.format(
 				simpleMailMessage.getText(), dear, content));
 

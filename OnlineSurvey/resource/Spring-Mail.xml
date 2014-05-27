@@ -7,7 +7,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
 		<property name="username" value="abc@gmail.com" />
-		<property name="password" value="abc" />
+		<property name="password" value="abc@gmail.com" />
 		
 		<property name="javaMailProperties">
 			<props>
@@ -28,12 +28,17 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 		<property name="from" value="abc@gmail.com" />
 		<property name="to" value="abc@gmail.com" />
-		<property name="subject" value="Testing Subject" />
+		<property name="subject" value="Inviting to participate in survey" />
 		<property name="text">
 		<value>
 			<![CDATA[
 				Dear %s,
-				Mail Content : %s
+				We request you to be a part of survey and help us improve.
+				Click below link to participate
+				
+				http://127.0.0.1:8080/OnlineSurvey/
+				
+				Thanks,
 			]]>
 		</value>
 	</property>

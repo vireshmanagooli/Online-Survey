@@ -12,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import com.onlinesurvey.bean.CustomerBean;
 import com.onlinesurvey.bean.UserSurveyBean;
 
 /**
@@ -105,8 +106,23 @@ public class UserSurveyDAO {
 		SessionFactory sf=configuration.buildSessionFactory(sr);				
 		Session ss=sf.openSession();
 		ss.beginTransaction();	
+			
+		UserSurveyBean mySurveyBean = (UserSurveyBean)ss.get(UserSurveyBean.class, userSurveyBean.getUserSurveyId()); 
 				
-	 	ss.update(userSurveyBean);
+		mySurveyBean.setUserResponse("Y");
+		mySurveyBean.setSurveyId(userSurveyBean.getSurveyId());
+		mySurveyBean.setQuestion_1(userSurveyBean.getQuestion_1());
+		mySurveyBean.setQuestion_2(userSurveyBean.getQuestion_2());
+		mySurveyBean.setQuestion_3(userSurveyBean.getQuestion_3());
+		mySurveyBean.setQuestion_4(userSurveyBean.getQuestion_4());
+		mySurveyBean.setQuestion_5(userSurveyBean.getQuestion_5());
+		mySurveyBean.setQuestion_6(userSurveyBean.getQuestion_6());
+		mySurveyBean.setQuestion_7(userSurveyBean.getQuestion_7());
+		mySurveyBean.setQuestion_8(userSurveyBean.getQuestion_8());
+		mySurveyBean.setQuestion_9(userSurveyBean.getQuestion_9());
+		mySurveyBean.setQuestion_10(userSurveyBean.getQuestion_10());
+	 	
+		ss.update(mySurveyBean);
 	 
 	 	ss.getTransaction().commit();
 		ss.close();

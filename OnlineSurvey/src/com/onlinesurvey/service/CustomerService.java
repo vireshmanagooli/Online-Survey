@@ -70,8 +70,15 @@ public class CustomerService {
 					
 		if(isValidUser){
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.OK);
-			returnObject.put("UserSurveyId", userBean.getUserSurveyId());
-			returnObject.put("SurveyId", userBean.getSurveyId());
+			
+			if(userBean != null){
+				returnObject.put("UserSurveyId", userBean.getUserSurveyId());
+				returnObject.put("SurveyId", userBean.getSurveyId());
+			}else{
+				returnObject.put("UserSurveyId", -1);
+				returnObject.put("SurveyId", -1);
+			}
+			
 		}else{
 			returnObject.put(ServiceConstants.RESULT, ServiceConstants.ERROR);
 		}

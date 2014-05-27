@@ -69,14 +69,29 @@ public class UserSurveyService {
 	@Path("/UpdateUserSurvey")
 	@POST	
 	@Produces(MediaType.APPLICATION_JSON) 
-	public String updateUserSurvey() throws JSONException {
+	public String updateUserSurvey(@Context HttpServletRequest request) throws JSONException {
 				
 		JSONObject returnObject = new JSONObject();	
-		JSONArray returnArray = new JSONArray();
 		
-		List<SurveyBean> allSurvey = new SurveyDAO().getAllSurvey();
+		UserSurveyBean userSurveyBean = new UserSurveyBean();
+		userSurveyBean.setSurveyId(Long.parseLong(request.getParameter("SurveyId")));
+		userSurveyBean.setUserSurveyId(Long.parseLong(request.getParameter("UserSurveyId")));
+		userSurveyBean.setQuestion_1(request.getParameter("Question_1"));
+		userSurveyBean.setQuestion_2(request.getParameter("Question_2"));
+		userSurveyBean.setQuestion_3(request.getParameter("Question_3"));
+		userSurveyBean.setQuestion_4(request.getParameter("Question_4"));
+		userSurveyBean.setQuestion_5(request.getParameter("Question_5"));
+		userSurveyBean.setQuestion_6(request.getParameter("Question_6"));
+		userSurveyBean.setQuestion_7(request.getParameter("Question_7"));
+		userSurveyBean.setQuestion_8(request.getParameter("Question_8"));
+		userSurveyBean.setQuestion_9(request.getParameter("Question_9"));
+		userSurveyBean.setQuestion_10(request.getParameter("Question_10"));
 		
-		return null;
+		new UserSurveyDAO().updateuserSurvey(userSurveyBean);
+		
+		returnObject.put(ServiceConstants.RESULT, ServiceConstants.OK);
+		
+		return returnObject.toString();
 	}
 	
 	/**

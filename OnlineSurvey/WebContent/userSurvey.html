@@ -30,6 +30,11 @@ $(document).ready(function () {
 			  	data: $("#SurveyDIV").serialize()				  	
 			}).done(function(survey) {
 			    console.log(survey);
+
+			    if(survey.Result == 'OK'){
+			    	alertify.success("Survey has been updated");	
+			    	$("#SurveyDIV").hide();				
+				}
 			});
 	  });
 

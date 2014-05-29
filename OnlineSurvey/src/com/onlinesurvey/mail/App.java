@@ -3,6 +3,11 @@ package com.onlinesurvey.mail;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * This is App class to send email
+ * @author Viresh
+ *
+ */
 public class App 
 {
     public static void main( String[] args )

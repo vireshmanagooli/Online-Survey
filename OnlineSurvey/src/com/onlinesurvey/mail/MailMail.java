@@ -3,6 +3,11 @@ package com.onlinesurvey.mail;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
+/**
+ * This is MailMail Class
+ * @author Viresh
+ *
+ */
 public class MailMail
 {
 	private MailSender mailSender;

@@ -4,8 +4,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * This is App class to send email
+ * This is App class to send email. Mail Client From Gmail
  * @author Viresh
+ * 
  *
  */
 public class App 
